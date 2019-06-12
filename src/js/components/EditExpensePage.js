@@ -12,7 +12,6 @@ class RenderEditExpense extends React.Component {
   render () {
     return (
       <div>
-        Editing {this.props.match.params.id}
         <RenderExpenseForm expense={this.props.expense} onSubmit={(expense) => {
           this.props.dispatch(editExpense(this.props.match.params.id, expense))
           this.props.history.push('/')
