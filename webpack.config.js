@@ -3,7 +3,6 @@ const HtmlWebpackPlugin = require('html-webpack-plugin')
 const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 
 const devMode = process.env.NODE_ENV !== 'production'
-console.log(`Current ENV: ${process.env.NODE_ENV}`)
 
 module.exports = {
   // entry point
@@ -35,17 +34,24 @@ module.exports = {
             hmr: process.env.NODE_ENV === 'development'
           }
         },
-        'css-loader',
-        // 'postcss-loader',
-        'sass-loader'
+        {
+          loader: 'css-loader',
+          options: {
+            sourceMap: true
+          }
+        },
+        {
+          loader: 'sass-loader',
+          options: {
+            sourceMap: true
+          }
+        }
       ]
     }]
   },
 
   plugins: [
     new MiniCssExtractPlugin({
-      // Options similar to the same options in webpackOptions.output
-      // both options are optional
       filename: devMode ? '[name].css' : '[name].[hash].css',
       chunkFilename: devMode ? '[id].css' : '[id].[hash].css'
     }),
@@ -58,7 +64,7 @@ module.exports = {
   ],
 
   // source maps
-  devtool: 'cheap-module-source-map',
+  devtool: process.env.NODE_ENV === 'development' ? 'cheap-module-source-map' : 'source-map',
 
   // dev server config
   devServer: {
