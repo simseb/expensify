@@ -1,13 +1,14 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 const moment = require('moment')
+const numeral = require('numeral')
 
 class RenderExpense extends React.Component {
   render () {
     return (
       <div>
         <Link to={`/edit/${this.props.id}`}>{this.props.description}</Link>
-        <p>{this.props.amount} - {moment.unix(this.props.createdAt / 1000).format('DD MMMM YYYY')}</p>
+        <p>{numeral(this.props.amount).format('$0,0[.]00')} - {moment(this.props.createdAt).format('MMMM Do, YYYY')}</p>
       </div>
     )
   }
