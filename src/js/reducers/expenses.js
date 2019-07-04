@@ -6,6 +6,8 @@ const expensesReducer = (state = expensesDefaultState, action) => {
         ...state,
         action.expense
       ]
+    case 'ADD_EXPENSES':
+      return action.expenses // overwrite the array completely
     case 'REMOVE_EXPENSE':
       return state.filter(expense => expense.id !== action.id)
     case 'EDIT_EXPENSE':

@@ -1,6 +1,6 @@
 import React from 'react'
 import RenderExpenseForm from './ExpenseForm'
-import { addExpense } from '../actions/expenses'
+import { startAddExpense } from '../actions/expenses'
 import { connect } from 'react-redux'
 
 class RenderCreateExpense extends React.Component {
@@ -9,7 +9,7 @@ class RenderCreateExpense extends React.Component {
       <div>
         <h2>Create an Expense</h2>
         <RenderExpenseForm onSubmit={(expense) => {
-          this.props.dispatch(addExpense(expense))
+          this.props.dispatch(startAddExpense(expense))
           this.props.history.push('/')
         }} />
       </div>
